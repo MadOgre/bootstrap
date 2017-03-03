@@ -3,7 +3,6 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
     <link rel="stylesheet" href="../../../dist/css/bootstrap.min.css">
     <title>Collapse</title>
   </head>
@@ -11,7 +10,7 @@
     <div class="container">
       <h1>Collapse <small>Bootstrap Visual Test</small></h1>
 
-      <div id="accordion" role="tablist" aria-multiselectable="true">
+      <div id="accordion" role="tablist">
         <div class="card">
           <div class="card-header" role="tab" id="headingOne">
             <h5 class="mb-0">
@@ -21,7 +20,7 @@
             </h5>
           </div>
 
-          <div id="collapseOne" class="collapse active" role="tabpanel" aria-labelledby="headingOne">
+          <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne">
             <div class="card-block">
               Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
             </div>
@@ -58,8 +57,33 @@
       </div>
     </div>
 
-    <script src="../vendor/jquery.min.js"></script>
+    <script src="../../../docs/assets/js/vendor/jquery-slim.min.js"></script>
     <script src="../../dist/util.js"></script>
     <script src="../../dist/collapse.js"></script>
+    <script>
+      // JavaScript Test
+      $(function () {
+        testCollapseTransitionError()
+      });
+
+      // Should throw an error because carousel is in transition
+      function testCollapseTransitionError() {
+        var err = false
+        $('#collapseOne').on('hidden.bs.collapse', function (e) {
+          $(this).off('hidden.bs.collapse')
+          if (!err) {
+            alert('No error thrown for : testCollapseTransitionError')
+          }
+        })
+
+        try {
+          $('#collapseOne').collapse('hide').collapse('show')
+        }
+        catch (e) {
+          err = true
+          console.error(e.message)
+        }
+      }
+    </script>
   </body>
 </html>

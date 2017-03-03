@@ -1,11 +1,16 @@
 ---
 layout: docs
 title: Badges
-description: Documentation and examples for badges, our small count and labelling component.
+description: Documentation and examples for badges, our small count and labeling component.
 group: components
 ---
 
 Small and adaptive tag for adding context to just about any content.
+
+## Contents
+
+* Will be replaced with the ToC, excluding the "Contents" header
+{:toc}
 
 ## Example
 
@@ -47,4 +52,17 @@ Use the `.badge-pill` modifier class to make badges more rounded (with a larger 
 <span class="badge badge-pill badge-info">Info</span>
 <span class="badge badge-pill badge-warning">Warning</span>
 <span class="badge badge-pill badge-danger">Danger</span>
+{% endexample %}
+
+## Links
+
+Using the `.badge` classes with the `<a>` element quickly provide _actionable_ badges with hover and focus states.
+
+{% example html %}
+<a href="#" class="badge badge-default">Default</a>
+<a href="#" class="badge badge-primary">Primary</a>
+<a href="#" class="badge badge-success">Success</a>
+<a href="#" class="badge badge-info">Info</a>
+<a href="#" class="badge badge-warning">Warning</a>
+<a href="#" class="badge badge-danger">Danger</a>
 {% endexample %}

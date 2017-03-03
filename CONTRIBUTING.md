@@ -28,10 +28,6 @@ restrictions:
   Use [GitHub's "reactions" feature](https://github.com/blog/2119-add-reactions-to-pull-requests-issues-and-comments) 
   instead. We reserve the right to delete comments which violate this rule.
 
-* Please **do not** open issues or pull requests regarding the code in
-  [`Normalize`](https://github.com/necolas/normalize.css) (open them in
-  its repository).
-
 * Please **do not** open issues regarding the official themes offered on <https://themes.getbootstrap.com/>.
   Instead, please email any questions or feedback regarding those themes to `themes AT getbootstrap DOT com`.
 
@@ -73,7 +69,7 @@ Guidelines for bug reports:
 
 3. **Isolate the problem** &mdash; ideally create a [reduced test
    case](https://css-tricks.com/reduced-test-cases/) and a live example.
-   [This JS Bin](https://jsbin.com/qusafa/edit?html,output) is a helpful template.
+   [This JS Bin](https://jsbin.com/lolome/edit?html,output) is a helpful template.
 
 
 A good bug report shouldn't leave others needing to chase you up for more

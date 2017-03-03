@@ -3,7 +3,6 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
     <link rel="stylesheet" href="../../../dist/css/bootstrap.min.css">
     <title>Tooltip</title>
   </head>
@@ -34,15 +33,34 @@
       </p>
     </div>
 
-    <script src="../vendor/jquery.min.js"></script>
-    <script src="../vendor/tether.min.js"></script>
+    <script src="../../../docs/assets/js/vendor/jquery-slim.min.js"></script>
+    <script src="../../../docs/assets/js/vendor/tether.min.js"></script>
     <script src="../../dist/util.js"></script>
     <script src="../../dist/tooltip.js"></script>
 
     <script>
       $(function () {
         $('[data-toggle="tooltip"]').tooltip()
+        testTooltipTransitionError()
       })
+
+      // Should throw an error because tooltip is in transition
+      function testTooltipTransitionError() {
+        var err = false
+        $('#btnOne').on('shown.bs.tooltip', function () {
+          $('#btnOne').tooltip('hide').off('shown.bs.tooltip')
+          if (!err) {
+            alert('No error thrown for : testTooltipTransitionError')
+          }
+        })
+        try {
+          $('#btnOne').tooltip('show').tooltip('hide')
+        }
+        catch (e) {
+          err = true
+          console.error(e.message)
+        }
+      }
     </script>
   </body>
 </html>

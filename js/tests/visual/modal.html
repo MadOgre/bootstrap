@@ -3,7 +3,6 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
     <link rel="stylesheet" href="../../../dist/css/bootstrap.min.css">
     <title>Modal</title>
     <style>
@@ -55,7 +54,7 @@
               <h4>Tooltips in a modal</h4>
               <p><a href="#" data-toggle="tooltip" data-placement="top" title="Tooltip on top">This link</a> and <a href="#" data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">that link</a> should have tooltips on hover.</p>
 
-              <div id="accordion" role="tablist" aria-multiselectable="true">
+              <div id="accordion" role="tablist">
                 <div class="card">
                   <div class="card-header" role="tab" id="headingOne">
                     <h5 class="mb-0">
@@ -65,7 +64,7 @@
                     </h5>
                   </div>
 
-                  <div id="collapseOne" class="collapse active" role="tabpanel" aria-labelledby="headingOne">
+                  <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne">
                     <div class="card-block">
                       Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
                     </div>
@@ -170,8 +169,8 @@
       </div>
     </div>
 
-    <script src="../vendor/jquery.min.js"></script>
-    <script src="../vendor/tether.min.js"></script>
+    <script src="../../../docs/assets/js/vendor/jquery-slim.min.js"></script>
+    <script src="../../../docs/assets/js/vendor/tether.min.js"></script>
     <script src="../../dist/util.js"></script>
     <script src="../../dist/modal.js"></script>
     <script src="../../dist/collapse.js"></script>
@@ -188,6 +187,26 @@
         }
       }
 
+      // Should throw an error because modal is in transition
+      function testModalTransitionError() {
+        var err = false
+        // Close #myModal
+        $('#myModal').on('shown.bs.modal', function () {
+          $('#myModal').modal('hide').off('shown.bs.modal')
+          if (!err) {
+            alert('No error thrown for : testModalTransitionError')
+          }
+        })
+
+        try {
+          $('#myModal').modal('show').modal('hide')
+        }
+        catch (e) {
+          err = true
+          console.error(e.message)
+        }
+      }
+
       $(function () {
         $('[data-toggle="popover"]').popover()
         $('[data-toggle="tooltip"]').tooltip()
@@ -200,6 +219,7 @@
           $('#firefoxModal').on('focus', reportFirefoxTestResult.bind(false))
           $('#ff-bug-input').on('focus', reportFirefoxTestResult.bind(true))
         })
+        testModalTransitionError()
       })
     </script>
   </body>
